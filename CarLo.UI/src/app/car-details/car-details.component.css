@@ -1,0 +1,47 @@
+.card {
+    background-color: black;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    border: 1px solid orange;
+}
+
+.card-body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body p {
+    font-size: 20px;
+}
+
+.card-body p strong {
+    color: orange;
+}
+
+.card-title {
+    color: orange;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+    margin: 2rem;
+    margin-bottom: 0;
+}
+
+.form-control::placeholder {
+    color: #919aa3;
+}
+
+.btn {
+    border-radius: 27.5px;
+    color: black;
+    background-color: orange;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover {
+    color: orange;
+    background-color: black;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

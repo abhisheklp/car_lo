@@ -1,0 +1,36 @@
+<div class="container">
+    <h6 class="display-6 text-white">Return Approvals</h6>
+    <hr style="color: orange;">
+    <div *ngIf="allReturnRequests.length === 0">
+        <p class="display-6 text-center" style="color: orange;">No return requests available.</p>
+    </div>
+    <div *ngFor="let returnReq of allReturnRequests">
+        <div *ngIf="!returnReq.returnApproval" class="card return-card text-white my-5" >
+            <div class="row">
+                <div class="col-md-3 col-12">
+                    <p class="display-6">Booker Infor.</p><hr>
+                    <p><strong>Name</strong> - {{ returnReq.fullName }}</p>
+                    <p><strong>Ph No.</strong> - {{ returnReq.phoneNo }}</p>
+                    <p><strong>Address</strong> - {{ returnReq.address }}</p>
+                    <p><strong>Lic No.</strong> - {{ returnReq.licenseNo }}</p>
+                    <p><strong>Vehicle ID</strong> - {{ returnReq.carDetailsEntityId }}</p>
+                </div>
+                <div class="col-md-5 col-12">
+                    <p class="display-6" style="color: orange;">Actions</p><hr>
+                    <p *ngIf="returnReq.agreementStatus" style="font-size: 1rem;">Agreement accepted by customer</p>
+                    <p *ngIf="returnReq.returnRequestGenerate && !returnReq.returnApproval" style="color: orange; font-size: 1rem;">Return requested by customer</p>
+                </div>
+                <div class="col-md-3 col-12">
+                    <p class="display-6" style="color: orange;">Make approval</p><hr>
+                    <p *ngIf="returnReq.returnApproval" style="font-size: 1rem;">No actions to be performed.</p>
+                    <form *ngIf="!returnReq.returnApproval" [formGroup]="getRemarks" (ngSubmit)="giveRemarks(returnReq.returnRequestId, returnReq.carDetailsEntityId)">
+                        <div class="mb-3">
+                            <input type="text" name="remarks" formControlName="remarks" class="form-control" placeholder="Remarks">
+                        </div>
+                        <button type="submit" class="btn">Approve Return</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

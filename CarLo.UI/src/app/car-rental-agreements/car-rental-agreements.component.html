@@ -1,0 +1,106 @@
+<div class="container">
+    <h6 class="display-6 text-white">My Rental Agreements</h6>
+    <hr style="color: orange;">
+    <div *ngIf="agreementofCars.length === 0">
+        <p class="display-6 text-center" style="color: orange;">No rental agreements available.</p>
+    </div>
+    <div class="card rental-card text-white my-5" *ngFor="let agreement of agreementofCars">
+        <div class="row">
+            <div class="col-md-3 col-12" style="padding-left: 0;">
+                <img routerLink="/cars/car-details/{{agreement.carId}}" src={{agreement.carImageURL}} class="img-fluid" style="cursor: pointer;">
+                <div style="position: absolute; bottom: 5px; margin-left: 90px;">
+                    <p><strong>Model</strong> - {{agreement.carBrandName}} {{agreement.carModelName}}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-12 mt-3">
+                <p class="display-6">Car Information</p><hr>
+                <p><strong>Vehicle No.</strong> - {{agreement.vehicleNo}}</p>
+                <p><strong>Rental Price</strong> - &#8377;{{ agreement.rentalPrice | number:'1.0-0' }}/day</p>
+                <p><strong>Days of booking</strong> - {{ agreement.noOfDays }}</p>
+                <p><strong>Total Price</strong> - &#8377;{{ agreement.noOfDays * agreement.rentalPrice | number:'1.0-0' }}-/</p>
+            </div>
+            <div class="col-md-3 col-12 mt-3">
+                <p class="display-6">Booker Info.</p><hr>
+                <p><strong>Name</strong> - {{agreement.fullName}}</p>
+                <p><strong>Ph No.</strong> - {{ agreement.phoneNo }}</p>
+                <p><strong>Address</strong> - {{ agreement.address }}</p>
+                <p><strong>Lic No.</strong> - {{ agreement.licenseNo }}</p>
+            </div>
+            <div class="col-md-3 col-12 mt-3">
+                <p class="display-6" style="color: orange;">Actions</p><hr>
+                <p *ngIf="agreement.agreementStatus && !isAdmin" class="display-6">Agreement<br>Accepted</p>
+                <button *ngIf="agreement.agreementStatus && !isAdmin && !agreement.returnRequestGenerate" class="btn btn-danger" (click)="requestForReturn(agreement.agreementId)">Request for Return</button>
+                <p *ngIf="agreement.returnRequestGenerate && !agreement.returnApproval" style="color: orange; font-size: 1rem;">Return requested. Waiting for approval...</p>
+                <p *ngIf="agreement.returnApproval" style="color: orange; font-size: 1rem;">Car Returned</p>
+                <button *ngIf="!agreement.agreementStatus && !isAdmin" class="btn btn-success" (click)="acceptAgreement(agreement.agreementId)">Accept Agreement</button>
+                <button *ngIf="!agreement.agreementStatus || isAdmin" class="btn btn-warning" (click)="setSelectedAgreement(agreement)" data-bs-toggle="modal" data-bs-target="#updateAgreementModal">Update Agreement</button>
+                <button *ngIf="!agreement.agreementStatus || isAdmin" class="btn btn-danger" (click)="deleteAgreement(agreement.agreementId, agreement.carId)">Delete Agreement</button>
+            </div>
+        </div>
+        <!-- Update modal -->
+        <div class="modal fade" id="updateAgreementModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Agreement</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="updateRentUser" (ngSubmit)="updateAgreement()">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Full Name (as per Govt. ID)</label>
+                                <input type="text" name="fullName" formControlName="fullName" class="form-control" placeholder="Name">
+                                <div *ngIf="updateRentUser.get('fullName')?.invalid && updateRentUser.get('fullName')?.touched" class="text-danger">
+                                    <div *ngIf="updateRentUser.get('fullName')?.hasError('required')">Full Name is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phoneNo" class="form-label">Phone No.</label>
+                                <input type="number" name="phoneNo" formControlName="phoneNo" class="form-control" placeholder="Phone no.">
+                                <div *ngIf="updateRentUser.get('phoneNo')?.invalid && updateRentUser.get('phoneNo')?.touched" class="text-danger">
+                                    <div *ngIf="updateRentUser.get('phoneNo')?.hasError('required')">Phone No. is required</div>
+                                    <div *ngIf="updateRentUser.get('phoneNo')?.hasError('minlength')">Enter valid Phone No. must be of 10 digits</div>
+                                    <div *ngIf="updateRentUser.get('phoneNo')?.hasError('maxlength')">Enter valid Phone No. must be of 10 digits</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Full Address</label>
+                                <input type="text" name="address" formControlName="address" class="form-control" placeholder="Address">
+                                <div *ngIf="updateRentUser.get('address')?.invalid && updateRentUser.get('address')?.touched" class="text-danger">
+                                    <div *ngIf="updateRentUser.get('address')?.hasError('required')">Address is required</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="noOfDays" class="form-label">No. of Days</label>
+                                <input type="number" name="noOfDays" formControlName="noOfDays" class="form-control" placeholder="No. of Days">
+                                <div *ngIf="updateRentUser.get('noOfDays')?.invalid && updateRentUser.get('noOfDays')?.touched" class="text-danger">
+                                    <div *ngIf="updateRentUser.get('noOfDays')?.hasError('required')">No. of days is required</div>
+                                    <div *ngIf="updateRentUser.get('noOfDays')?.hasError('min')">Minimum for 1 day</div>
+                                    <div *ngIf="updateRentUser.get('noOfDays')?.hasError('max')">Maximum for 15 days</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="licenseNo" class="form-label">License No.</label>
+                                <input type="text" name="licenseNo" formControlName="licenseNo" class="form-control" placeholder="Driving License no.">
+                                <div *ngIf="updateRentUser.get('licenseNo')?.invalid && updateRentUser.get('licenseNo')?.touched" class="text-danger">
+                                    <div *ngIf="updateRentUser.get('licenseNo')?.hasError('required')">License No. is required</div>
+                                    <div *ngIf="updateRentUser.get('licenseNo')?.hasError('minlength')">Enter valid License No. must be of 10 digits</div>
+                                    <div *ngIf="updateRentUser.get('licenseNo')?.hasError('maxlength')">Enter valid License No. must be of 10 digits</div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn mx-2" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn mx-2" data-bs-dismiss="modal">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div *ngIf="!agreementofCars || agreementofCars.length === 0" class="order order-card">
+        <h1 class="display-4 text-center text-success">No agreements received from you </h1>
+</div> -->

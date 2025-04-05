@@ -1,0 +1,33 @@
+.user-text {
+    color: orange;
+}
+
+.carousel {
+    border-radius: 27.5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    object-fit: fill;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+}
+
+.btn {
+    display: inline-block;
+    background: orange;
+    color: black;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: background 0.5s;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover{
+    background: black;
+    color: orange;
+    
+}

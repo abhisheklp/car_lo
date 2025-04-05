@@ -1,0 +1,68 @@
+<div class="container cars-card my-2">
+    <a class="btn" routerLink="/cars"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i> back</a>
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-5">
+                <img src="{{car.carImageURL}}" class="card-img-top img-fluid" alt="Car Image">
+                <div class="card-body">
+                    <h2 class="card-title text-center display-6">{{car.carBrandName}} {{car.carModelName}}</h2>
+                    <p class="card-text"><strong>Description</strong> - {{car.carDescription}}</p>
+                    <p class=""><strong>Car Category</strong> - {{category.carCategoryName}}</p>
+                    <p class=""><strong>About {{category.carCategoryName}}</strong> - {{category.carCategoryDescription}}</p>
+                    <p class=""><strong>Rent per day</strong> - &#8377;{{car.rentalPrice | number:'1.0-0'}}-/</p>
+                </div>
+                <p *ngIf="isAdmin" class="card-text display-6 text-center my-2" style="color: orange;">You are Admin</p>
+                <p *ngIf="!isAdmin && !isUser" class="card-text display-6 mx-5" style="color: orange;">Login to rent this car</p>
+                <p *ngIf="!isAdmin && isUser && car.carAvailability" class="card-text display-6 mx-5" style="color: orange;">Fill form to rent this car</p>
+                <p *ngIf="!isAdmin && isUser && !car.carAvailability" class="card-text display-6 text-center my-2" style="color: orange;">Car not available for rent</p>
+                <div class="mx-5" *ngIf="!isAdmin && isUser && car.carAvailability">
+                    <form [formGroup]="rentUser" (ngSubmit)="rentCar()">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name (as per Govt. ID)</label>
+                            <input type="text" formControlName="fullName" class="form-control" placeholder="Name">
+                            <div *ngIf="rentUser.get('fullName')?.invalid && rentUser.get('fullName')?.touched" class="text-danger">
+                                <div *ngIf="rentUser.get('fullName')?.hasError('required')">Full Name is required</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNo" class="form-label">Phone No.</label>
+                            <input type="text" formControlName="phoneNo" class="form-control" placeholder="Phone no.">
+                            <div *ngIf="rentUser.get('phoneNo')?.invalid && rentUser.get('phoneNo')?.touched" class="text-danger">
+                                <div *ngIf="rentUser.get('phoneNo')?.hasError('required')">Phone No. is required</div>
+                                <div *ngIf="rentUser.get('phoneNo')?.hasError('minlength')">Enter valid Phone No. must be of 10 digits</div>
+                                <div *ngIf="rentUser.get('phoneNo')?.hasError('maxlength')">Enter valid Phone No. must be of 10 digits</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Full Address</label>
+                            <input type="text" formControlName="address" class="form-control" placeholder="Address">
+                            <div *ngIf="rentUser.get('address')?.invalid && rentUser.get('address')?.touched" class="text-danger">
+                                <div *ngIf="rentUser.get('address')?.hasError('required')">Address is required</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="noOfDays" class="form-label">No. of Days</label>
+                            <input type="text" formControlName="noOfDays" class="form-control" placeholder="No. of Days">
+                            <div *ngIf="rentUser.get('noOfDays')?.invalid && rentUser.get('noOfDays')?.touched" class="text-danger">
+                                <div *ngIf="rentUser.get('noOfDays')?.hasError('required')">No. of days is required</div>
+                                <div *ngIf="rentUser.get('noOfDays')?.hasError('min')">Minimum for 1 day</div>
+                                <div *ngIf="rentUser.get('noOfDays')?.hasError('max')">Maximum for 15 days</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="licenseNo" class="form-label">License No.</label>
+                            <input type="text" formControlName="licenseNo" class="form-control" placeholder="Driving License no.">
+                            <div *ngIf="rentUser.get('licenseNo')?.invalid && rentUser.get('licenseNo')?.touched" class="text-danger">
+                                <div *ngIf="rentUser.get('licenseNo')?.hasError('required')">License No. is required</div>
+                                <div *ngIf="rentUser.get('licenseNo')?.hasError('minlength')">Enter valid License No. must be of 10 digits</div>
+                                <div *ngIf="rentUser.get('licenseNo')?.hasError('maxlength')">Enter valid License No. must be of 10 digits</div>
+                            </div>
+                        </div>
+                        <button type="submit" *ngIf="quantity" class="btn my-3">Rent this car @ &#8377;{{car.rentalPrice | number:'1.0-0'}}/day</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+.rental-card {
+    border: 0;
+    border-radius: 27.5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    background-color: black;
+    padding-left: 10px;
+    border: 1px solid orange;
+}
+
+.rental-card img {
+    border-radius: 27.5px;
+    height: 100%;
+    width: 100%;
+    border-left: 1px solid orange;
+}
+
+strong {
+    color: orange;
+}
+
+.btn {
+    display: inline-block;
+    background: orange;
+    color: black;
+    padding: 8px 30px;
+    margin: 10px 0;
+    border-radius: 27.5px;
+    transition: background 0.5s;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    height: 30px;
+    align-items: center;
+    display: flex;
+}
+
+.btn:hover{
+    background: black;
+    color: orange;
+    
+}
+
+.modal-dialog {
+    color: white;
+}
+
+.modal-content{
+    background-color: black;
+    border: 1px solid orange;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}

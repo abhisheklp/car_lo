@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a routerLink="" class="navbar-brand display-6" href="#"><img routerLink="" class="logo mx-2" src="assets/images/logo.png" style="height: 50px; width: 80px;" alt="logo">CarLo.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav mx-auto">
+                <a class="nav-link" aria-current="page" routerLink="">Home</a>
+                <a class="nav-link" routerLink="/cars">Cars</a>
+                <a *ngIf="isUser" class="nav-link" routerLink="/rental-agreements">Rental Agreements</a>
+                <a *ngIf="isAdmin" class="nav-link" routerLink="/return-approval">Return Approval</a>
+            </div>
+            
+            <div class="nav-auth d-flex">
+                <h6 *ngIf="this.isUser" class="text-white mx-4 mt-2">{{this.service.loginResult.userName}}</h6>
+                <button *ngIf="this.isUser" routerLink="" (click)="logOut()" class="btn btn-outline-warning">Log Out</button>
+                <button *ngIf="!this.isUser" routerLink="/login" class="btn mx-2">Login Here</button>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,69 @@
+.search-container {
+    overflow-x: hidden;
+    padding-top: 4px;
+}
+
+.search-input {
+    border-radius: 27.5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.dropdown-menu {
+    background-color: black;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    
+}
+.dropdown-item{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.dropdown-item:hover {
+    color: orange;
+}
+
+.card {
+    background-color: black;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.card-body {
+    height: 17rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    border-radius: 27.5px;
+    color: black;
+    background-color: orange;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover {
+    color: orange;
+    background-color: black;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.car-alter {
+    text-align: center;
+}
+
+.page-link {
+    color: black;
+    background-color: orange;
+    height: 20px;
+    font-size: 12px;
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+}
+
+.page-link:hover {
+    color: orange;
+    background-color: black;
+}

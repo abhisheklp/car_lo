@@ -1,0 +1,51 @@
+<div class="container">
+    <h1 class="display-2 text-white">Add Car</h1>
+    <div class="card add-car-card">
+        <div class="row">
+            <div class="col-md-6">
+                <img class="banner" src="assets/images/add-car.jpg" alt="car-banner">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <div class="brand-wrapper text-center">
+                        <img src="assets/images/logo.png" alt="logo" class="logo img-fluid">CarLo.com
+                    </div>
+                    <form [formGroup]="newCar" (ngSubmit)="addCarInventery()" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="carBrandName" class="form-label">Car Brand Name</label>
+                            <input type="text" formControlName="carBrandName" class="form-control" placeholder="Car Brand Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carModelName" class="form-label">Car Model Name</label>
+                            <input type="text" formControlName="carModelName" class="form-control" placeholder="Car Model Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carDescription" class="form-label">Car Description</label>
+                            <input type="text" formControlName="carDescription" class="form-control" placeholder="Car Description">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carImageURL" class="form-label">Car Image URL</label>
+                            <input type="text" formControlName="carImageURL" class="form-control" placeholder="Image URL">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carCategoryEntityId" class="form-label">Car Category</label> &nbsp;&nbsp;
+                            <select class="form-select category" formControlName="carCategoryEntityId">
+                                <option value="">Select Category</option>
+                                <option class="text-dark" value="{{category.carCategoryId}}" *ngFor="let category of categories">{{category.carCategoryName}}</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rentalPrice" class="form-label">Rental Price</label>
+                            <input type="text" formControlName="rentalPrice" class="form-control" placeholder="Rental price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carAvailability" class="form-label">Available Cars</label>
+                            <input type="text" formControlName="carAvailability" class="form-control" placeholder="Available cars">
+                        </div>
+                        <button class="btn btn-block add-car-btn" type="submit" [disabled]="newCar.invalid">Add Car</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

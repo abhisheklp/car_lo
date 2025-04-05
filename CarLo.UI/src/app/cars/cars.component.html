@@ -1,0 +1,76 @@
+<!-- search bar -->
+<section class="search-container">
+    <div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-auto">
+                <p class="pt-1">
+                    <strong class="text-white" style="font-size: 1rem;">Search your car</strong>
+                </p>
+            </div>
+
+            <div class="col-md-5 col-12">
+                <div class="form-outline form-white mb-4">
+                    <input type="search" id="form5Example21" class="form-control search-input pl-2" [(ngModel)]="searchQuery" placeholder="I am looking for" (keyup.enter)="onSearch()"/>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn mb-4" (click)="onSearch()">Search</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- select category and add car -->
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ this.selectedCategoryName || 'Select Category' }}</button>
+                <ul class="dropdown-menu">
+                    <a class="dropdown-item" (click)="onCategoryClick(0)">All Category</a>
+                    <li *ngFor="let category of categories">
+                        <a class="dropdown-item" (click)="onCategoryClick(category)">{{category.carCategoryName}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-3 text-end">
+            <button *ngIf="this.isAdmin" routerLink="add-car" class="btn" style="font-weight: bold;">Add Car</button>
+        </div>
+    </div>
+
+    <!-- Sorting of products -->
+    <div class="row my-3">
+        <div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort By : </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" (click)="sortByMakerName()">Brand</a></li>
+                <li><a class="dropdown-item" (click)="sortByModelName()">Model</a></li>
+                <li><a class="dropdown-item" (click)="sortByPrice()">Rent Price</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- car cards -->
+<div class="container cars-card my-2">
+    <div class="row">
+        <div class="col-md-4 col-12" *ngFor="let car of cars">
+          <div class="card my-5"> <!--style="width: 18rem;"-->
+            <img routerLink="car-details/{{ car.carId }}" src="{{car.carImageURL}}" class="card-img-top" style="cursor: pointer;" alt="Car Image">
+            <div class="card-body">
+                <h5 class="card-title">{{ car.carBrandName }} {{car.carModelName}}</h5>
+                <p class="card-text">{{ car.carDescription }}</p>
+                <button *ngIf="!this.isAdmin && car.carAvailability" routerLink="car-details/{{ car.carId }}" class="btn mt-auto">Rent this car @ &#8377;{{car.rentalPrice | number:'1.0-0'}}/day</button>
+                <button *ngIf="!this.isAdmin && !car.carAvailability" class="btn mt-auto" disabled>Not available for rent</button>
+                <div *ngIf="this.isAdmin" class="car-alter">
+                    <button routerLink="update-car/{{car.carId}}" class="btn mt-auto mx-2">Update</button>
+                    <button class="btn mt-auto mx-2" (click)="deleteCar(car.carId)" style="background-color: red;">Delete</button>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
