@@ -1,0 +1,12 @@
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\bin\Debug\netcoreapp3.1\CarLo.Backend.Business.deps.json
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\bin\Debug\netcoreapp3.1\CarLo.Backend.Business.dll
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\bin\Debug\netcoreapp3.1\CarLo.Backend.Business.pdb
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\obj\Debug\netcoreapp3.1\CarLo.Backend.Business.csproj.AssemblyReference.cache
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\obj\Debug\netcoreapp3.1\CarLo.Backend.Business.AssemblyInfoInputs.cache
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\obj\Debug\netcoreapp3.1\CarLo.Backend.Business.AssemblyInfo.cs
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\obj\Debug\netcoreapp3.1\CarLo.Backend.Business.csproj.CoreCompileInputs.cache
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\obj\Debug\netcoreapp3.1\CarLo.Backend.Business.dll
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\obj\Debug\netcoreapp3.1\CarLo.Backend.Business.pdb
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\bin\Debug\netcoreapp3.1\CarLo.Backend.DAL.dll
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\bin\Debug\netcoreapp3.1\CarLo.Backend.DAL.pdb
+C:\Users\abhishekpandey08\source\repos\Car Lo\Backend\CarLo.Backend\Business\CarLo.Backend.Business\obj\Debug\netcoreapp3.1\CarLo.Backend.Business.csproj.CopyComplete
